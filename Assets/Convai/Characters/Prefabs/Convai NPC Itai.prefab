@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Itai
-  characterID: 089a45c0-ada4-11ef-8a7f-42010a7be016
+  characterID: 890d7678-b1aa-11ef-a2ba-42010a7be016
   sessionID: -1
   isCharacterActive: 0
   actionsHandler: {fileID: 0}
