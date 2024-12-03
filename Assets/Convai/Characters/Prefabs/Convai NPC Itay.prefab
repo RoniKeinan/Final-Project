@@ -56,10 +56,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Convai NPC Itay
       objectReference: {fileID: 0}
-    - target: {fileID: 4027854704474631659, guid: 46698859be2115946ad82dd1c3c175cd, type: 3}
-      propertyPath: m_TagString
-      value: Character
-      objectReference: {fileID: 0}
     - target: {fileID: 5033275925128452804, guid: 46698859be2115946ad82dd1c3c175cd, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.12757719
