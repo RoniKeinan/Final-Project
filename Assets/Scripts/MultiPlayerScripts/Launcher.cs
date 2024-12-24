@@ -40,7 +40,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         MenuManager.instance.OpenMenu("RoomMenu");
-        roomNameText.text = PhotonNetwork.CurrentRoom.name;
+        roomNameText.text = PhotonNetwork.CurrentRoom.Name;
     }
 
     public override void OnCreateRoomFailed(short returnCode, string Errormessage)
@@ -52,7 +52,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
-        MenuManager.Instance.OpenMenu("LoadingMenu");
+        MenuManager.instance.OpenMenu("LoadingMenu");
     }
 
     public override void OnLeftRoom()
