@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 namespace ReadyPlayerMe.Samples.QuickStart
 {
     [RequireComponent(typeof(CharacterController), typeof(GroundCheck))]
