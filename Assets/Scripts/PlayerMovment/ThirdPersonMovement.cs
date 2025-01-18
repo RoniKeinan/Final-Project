@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Photon.Pun;
 
 namespace ReadyPlayerMe.Samples.QuickStart
 {
@@ -8,20 +8,25 @@ namespace ReadyPlayerMe.Samples.QuickStart
     {
         private const float TURN_SMOOTH_TIME = 0.05f;
 
-        [SerializeField][Tooltip("Used to determine movement direction based on input and camera forward axis")] 
+        [SerializeField]
+        [Tooltip("Used to determine movement direction based on input and camera forward axis")]
         private Transform playerCamera;
-        [SerializeField][Tooltip("Move speed of the character in")]
+        [SerializeField]
+        [Tooltip("Move speed of the character in")]
         private float walkSpeed = 3f;
-        [SerializeField][Tooltip("Run speed of the character")] 
+        [SerializeField]
+        [Tooltip("Run speed of the character")]
         private float runSpeed = 8f;
-        [SerializeField][Tooltip("The character uses its own gravity value. The engine default is -9.81f")] 
+        [SerializeField]
+        [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
         private float gravity = -18f;
-        [SerializeField][Tooltip("The height the player can jump ")] 
+        [SerializeField]
+        [Tooltip("The height the player can jump ")]
         private float jumpHeight = 3f;
 
         private CharacterController controller;
         private GameObject avatar;
-        
+
         private float verticalVelocity;
         private float turnSmoothVelocity;
 
@@ -30,7 +35,7 @@ namespace ReadyPlayerMe.Samples.QuickStart
         private bool isRunning;
 
         private GroundCheck groundCheck;
-        
+
         private void Awake()
         {
             controller = GetComponent<CharacterController>();
@@ -49,14 +54,14 @@ namespace ReadyPlayerMe.Samples.QuickStart
         public void Move(float inputX, float inputY)
         {
             var moveDirection = playerCamera.right * inputX + playerCamera.forward * inputY;
-            var moveSpeed = isRunning ? runSpeed: walkSpeed;
+            var moveSpeed = isRunning ? runSpeed : walkSpeed;
 
             JumpAndGravity();
-            controller.Move(moveDirection.normalized * (moveSpeed * Time.deltaTime) +  new Vector3(0.0f, verticalVelocity * Time.deltaTime, 0.0f));
+            controller.Move(moveDirection.normalized * (moveSpeed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity * Time.deltaTime, 0.0f));
 
             var moveMagnitude = moveDirection.magnitude;
             CurrentMoveSpeed = isRunning ? runSpeed * moveMagnitude : walkSpeed * moveMagnitude;
-            
+
             if (moveMagnitude > 0)
             {
                 RotateAvatarTowardsMoveDirection(moveDirection);
@@ -72,17 +77,17 @@ namespace ReadyPlayerMe.Samples.QuickStart
 
         private void JumpAndGravity()
         {
-            if (controller.isGrounded && verticalVelocity< 0)
+            if (controller.isGrounded && verticalVelocity < 0)
             {
                 verticalVelocity = -2f;
             }
-            
+
             if (jumpTrigger && controller.isGrounded)
             {
                 verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
                 jumpTrigger = false;
             }
-            
+
             verticalVelocity += gravity * Time.deltaTime;
         }
 
@@ -90,7 +95,7 @@ namespace ReadyPlayerMe.Samples.QuickStart
         {
             isRunning = running;
         }
-        
+
         public bool TryJump()
         {
             jumpTrigger = false;
